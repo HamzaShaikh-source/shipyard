@@ -1,6 +1,11 @@
 import ProductCard from "./components/ProductCard";
 import { products } from "./data/products";
 
+export const metadata = {
+  title: "ShipYard: Gear for builders, runners, and explorers",
+  description: "Browse sneakers, audio, wearables, and gadgets in the ShipYard catalog.",
+};
+
 export default function HomePage() {
   return (
     <main className="container">

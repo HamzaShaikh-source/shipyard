@@ -5,6 +5,7 @@ export interface Product {
   tagline: string;
   price: number;
   category: "Sneakers" | "Audio" | "Wearables" | "Gadgets";
+  image: string; // e.g. "/products/wave-runner.jpg"
   emoji: string;
   accent: string; // CSS color used for the card art background
   description: string;
@@ -18,6 +19,7 @@ export const products: Product[] = [
     tagline: "Everyday running sneakers built for long miles.",
     price: 129,
     category: "Sneakers",
+    image: "/products/wave-runner.jpg",
     emoji: "👟",
     accent: "#6c8cff",
     description:
@@ -30,6 +32,7 @@ export const products: Product[] = [
     tagline: "Grippy off-road shoes for rough terrain.",
     price: 149,
     category: "Sneakers",
+    image: "/products/trail-blazer.jpg",
     emoji: "🥾",
     accent: "#2f9e6f",
     description:
@@ -42,6 +45,7 @@ export const products: Product[] = [
     tagline: "Wireless earbuds with deep, clean bass.",
     price: 89,
     category: "Audio",
+    image: "/products/pulse-buds.jpg",
     emoji: "🎧",
     accent: "#a06cff",
     description:
@@ -54,6 +58,7 @@ export const products: Product[] = [
     tagline: "A pocket speaker that fills a room.",
     price: 59,
     category: "Audio",
+    image: "/products/echo-speaker.jpg",
     emoji: "🔊",
     accent: "#e8820c",
     description:
@@ -66,6 +71,7 @@ export const products: Product[] = [
     tagline: "A smartwatch that tracks everything.",
     price: 199,
     category: "Wearables",
+    image: "/products/time-keeper.jpg",
     emoji: "⌚",
     accent: "#d64d7a",
     description:
@@ -78,6 +84,7 @@ export const products: Product[] = [
     tagline: "A minimalist fitness tracker.",
     price: 69,
     category: "Wearables",
+    image: "/products/focus-band.jpg",
     emoji: "📿",
     accent: "#1fae9e",
     description:
@@ -90,6 +97,7 @@ export const products: Product[] = [
     tagline: "A fast charger for every device.",
     price: 49,
     category: "Gadgets",
+    image: "/products/power-brick.jpg",
     emoji: "🔋",
     accent: "#4b63d6",
     description:
@@ -102,6 +110,7 @@ export const products: Product[] = [
     tagline: "A tiny action camera for any adventure.",
     price: 119,
     category: "Gadgets",
+    image: "/products/clip-cam.jpg",
     emoji: "📷",
     accent: "#e85d5d",
     description:
