@@ -1,10 +1,33 @@
+import type { Metadata } from "next";
+import dynamic from "next/dynamic";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProduct, products } from "../../data/products";
 
+const basePath = process.env.NODE_ENV === "production" ? "/shipyard" : "";
+
+// Reviews ships in its own chunk, fetched only when it renders (lazy loading).
+const Reviews = dynamic(() => import("./Reviews"), {
+  loading: () => <p className="reviews-loading">Loading reviews…</p>,
+});
+
 // Pre-build one static page per product at build time.
 export function generateStaticParams() {
   return products.map((product) => ({ id: product.id }));
+}
+
+export function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Metadata {
+  const product = getProduct(params.id);
+  if (!product) return { title: "Product not found | ShipYard" };
+  return {
+    title: `${product.name} | ShipYard`,
+    description: product.tagline,
+  };
 }
 
 export default function ProductPage({ params }: { params: { id: string } }) {
@@ -15,6 +38,10 @@ export default function ProductPage({ params }: { params: { id: string } }) {
     notFound();
   }
 
+  const imageSrc = product.image.startsWith("/")
+    ? `${basePath}${product.image}`
+    : product.image;
+
   return (
     <main className="container">
       <Link href="/" className="back-link">
@@ -22,8 +49,16 @@ export default function ProductPage({ params }: { params: { id: string } }) {
       </Link>
 
       <article className="detail">
-        <div className="detail-art" style={{ background: product.accent }}>
-          <span className="detail-emoji">{product.emoji}</span>
+        <div className="detail-art">
+          {/* Main hero image with explicit dimensions and priority for optimal LCP */}
+          <Image
+            src={imageSrc}
+            alt={product.name}
+            width={600}
+            height={450}
+            className="detail-img"
+            priority
+          />
         </div>
 
         <div className="detail-body">
@@ -41,6 +76,8 @@ export default function ProductPage({ params }: { params: { id: string } }) {
           </ul>
         </div>
       </article>
+
+      <Reviews productId={product.id} />
     </main>
   );
 }

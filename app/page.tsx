@@ -1,6 +1,11 @@
 import ProductCard from "./components/ProductCard";
 import { products } from "./data/products";
 
+export const metadata = {
+  title: "ShipYard: Gear for builders, runners, and explorers",
+  description: "Browse sneakers, audio, wearables, and gadgets in the ShipYard catalog.",
+};
+
 export default function HomePage() {
   return (
     <main className="container">
@@ -15,10 +20,14 @@ export default function HomePage() {
           <span className="section-count">{products.length} items</span>
         </div>
 
-        {/* A responsive grid: one card per product, straight from data. */}
+        {/* A responsive grid: one card per product, with priority on the above-the-fold hero card */}
         <div className="grid">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
+          {products.map((product, index) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              priority={index === 0}
+            />
           ))}
         </div>
       </section>
