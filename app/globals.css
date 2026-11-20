@@ -483,3 +483,29 @@ a {
   border-color: var(--ink);
   color: var(--ink);
 }
+
+/* Status states (loading, error) */
+.status {
+  padding: 3rem 1rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.status button {
+  margin-top: 1rem;
+  background: var(--brand);
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.25rem;
+  border-radius: 6px;
+  font: inherit;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.status button:hover {
+  opacity: 0.9;
+}
+
