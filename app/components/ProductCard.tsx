@@ -2,13 +2,19 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Product } from "../data/products";
 
+const basePath = process.env.NODE_ENV === "production" ? "/shipyard" : "";
+
 // The card takes one typed product as a prop. TypeScript checks every field.
 export default function ProductCard({ product }: { product: Product }) {
+  const imageSrc = product.image.startsWith("/")
+    ? `${basePath}${product.image}`
+    : product.image;
+
   return (
     <Link href={`/products/${product.id}`} className="card">
       <div className="card-art">
         <Image
-          src={product.image}
+          src={imageSrc}
           alt={product.name}
           width={460}
           height={345}

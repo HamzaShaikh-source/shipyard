@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+// Friendly 404 page displayed when a product is not found or an invalid route is visited.
 export default function NotFound() {
   return (
     <main className="container">

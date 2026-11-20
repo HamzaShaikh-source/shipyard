@@ -5,7 +5,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProduct, products } from "../../data/products";
 
-// Reviews ships in its own chunk, fetched only when it renders.
+const basePath = process.env.NODE_ENV === "production" ? "/shipyard" : "";
+
+// Reviews ships in its own chunk, fetched only when it renders (lazy loading).
 const Reviews = dynamic(() => import("./Reviews"), {
   loading: () => <p className="reviews-loading">Loading reviews…</p>,
 });
@@ -36,6 +38,10 @@ export default function ProductPage({ params }: { params: { id: string } }) {
     notFound();
   }
 
+  const imageSrc = product.image.startsWith("/")
+    ? `${basePath}${product.image}`
+    : product.image;
+
   return (
     <main className="container">
       <Link href="/" className="back-link">
@@ -44,8 +50,9 @@ export default function ProductPage({ params }: { params: { id: string } }) {
 
       <article className="detail">
         <div className="detail-art">
+          {/* Main hero image with explicit dimensions and priority for optimal LCP */}
           <Image
-            src={product.image}
+            src={imageSrc}
             alt={product.name}
             width={600}
             height={450}
