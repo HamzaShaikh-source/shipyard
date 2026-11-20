@@ -3,7 +3,9 @@
 A product-catalog storefront built with Next.js + TypeScript.
 
 - Live site: https://hamzashaikh-source.github.io/shipyard/
-- Lighthouse Performance: 96+ (mobile)
+- Lighthouse Performance: 92 (mobile)
+
+![Lighthouse Score](./lighthouse-score.png)
 
 ## Run locally
 
