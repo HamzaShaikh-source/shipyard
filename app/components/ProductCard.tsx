@@ -5,7 +5,14 @@ import type { Product } from "../data/products";
 const basePath = process.env.NODE_ENV === "production" ? "/shipyard" : "";
 
 // The card takes one typed product as a prop. TypeScript checks every field.
-export default function ProductCard({ product }: { product: Product }) {
+// Supports an optional priority prop for above-the-fold catalog hero images.
+export default function ProductCard({
+  product,
+  priority = false,
+}: {
+  product: Product;
+  priority?: boolean;
+}) {
   const imageSrc = product.image.startsWith("/")
     ? `${basePath}${product.image}`
     : product.image;
@@ -20,6 +27,7 @@ export default function ProductCard({ product }: { product: Product }) {
           height={345}
           className="card-img"
           sizes="(max-width: 560px) 100vw, 230px"
+          priority={priority}
         />
       </div>
       <div className="card-body">
